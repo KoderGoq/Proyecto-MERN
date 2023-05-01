@@ -11,7 +11,6 @@ router.post('/login', autenticar); // Autenticar Usuario
 router.post('/olvide-password', olvidePassword); // Resetear contraseña
 router.route('/olvide-password/:token').get(comprobarToken).post(nuevoPassword);
 
-
 // Area privada
 router.get('/perfil', authMiddleware, perfil); // Otra para los perfiles del veterinario
 

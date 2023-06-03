@@ -12,7 +12,7 @@ app.use(express.json()) // Enviar datos a la API
 dotenv.config(); // Configuramos las variables de entorno para la base de datos
 conectarDB(); // Llamamos la funcion de la base de datos
 
-const dominiosPermitidos = ["http://localhost:5173"];
+const dominiosPermitidos = [process.env.FRONTEND_URL];
 
 const corsOptions = {
     origin: function (origin, callback) {

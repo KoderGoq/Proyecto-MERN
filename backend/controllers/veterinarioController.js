@@ -2,6 +2,7 @@ import Veterinario from "../models/Veterinario.js"; // Importamos el modelo
 import generarJWT from "../helpers/generarJWT.js"; // JWT
 import generarId from "../helpers/generarId.js"; // Generar id
 import emailRegistro from "../helpers/emailRegistro.js"; // Para el envio de emails
+import emailOlvidePassword from "../helpers/emailOlvidePassword.js";
 
 const registrar = async (req, res) => { // Registrar nuevo usuario
     const { email, nombre } = req.body;
@@ -95,6 +96,14 @@ const olvidePassword = async (req, res) => {
     try {
         existeVeterinario.token = generarId();
         await existeVeterinario.save();
+
+        // Enviar email con instrucciones
+        emailOlvidePassword({
+            email,
+            nombre: existeVeterinario.nombre,
+            token: existeVeterinario.token
+        });
+
         res.json({ msg: "Hemos enviado un email con las instrucciones" });
     } catch (error) {
         console.log(error);

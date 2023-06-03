@@ -22,12 +22,11 @@ const emailRegistro = async (datos) => {
             <a href="${process.env.FRONTEND_URL}/confirmar/${token}">Comprobar cuenta</a> </p>
 
             <p>Si tu no creaste esta cuenta, puedes ignorar este mensaje</p>
-        
-        
+                
         `
     });
 
-    console.log('Mensaje enviado, %s', info.messageId);
+    console.log('Mensaje enviado: %s', info.messageId);
 
 }
 

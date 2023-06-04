@@ -1,7 +1,10 @@
+import usePacientes from "../hooks/usePacientes";
 
 const Paciente = ({ paciente }) => {
 
     const { email, fecha, nombre, propietario, sintomas, _id } = paciente;
+
+    const { setEdicion, elimarPaciente } = usePacientes();
 
     const formatearFecha = (fecha) => {
         const nuevaFecha = new Date(fecha)
@@ -30,15 +33,12 @@ const Paciente = ({ paciente }) => {
                 Sintomas: {''}
                 <span className="font-normal normal-case text-black">{sintomas}</span>
             </p>
-            <p className="font-bold uppercase text-indigo-800 my-2">
-                ID Registro: {''}
-                <span className="font-normal normal-case text-black">{_id}</span>
-            </p>
 
             <div className="flex justify-between my-5">
                 <button
                     type="button"
                     className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 transition-colors text-white uppercase font-bold rounded-lg"
+                    onClick={() => setEdicion(paciente)}
                 >
                     Editar
                 </button>
@@ -46,6 +46,7 @@ const Paciente = ({ paciente }) => {
                 <button
                     type="button"
                     className="py-2 px-10 bg-red-600 hover:bg-red-700 transition-colors text-white uppercase font-bold rounded-lg"
+                    onClick={() => elimarPaciente(_id)}
                 >
                     Eliminar
                 </button>

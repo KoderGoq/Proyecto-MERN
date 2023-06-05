@@ -17,7 +17,7 @@ const dominiosPermitidos = [process.env.FRONTEND_URL];
 const corsOptions = {
     origin: function (origin, callback) {
         if (dominiosPermitidos.indexOf(origin) !== -1) {
-            // El origen del request esta permitido
+            // El origen del request está permitido
             callback(null, true);
         } else {
             callback(new Error('No permitido por CORS'));
@@ -25,7 +25,13 @@ const corsOptions = {
     }
 }
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 app.use(cors(corsOptions));
+
 app.use('/api/veterinarios', veterinarioRoutes) // nuestro url de acceso
 app.use('/api/pacientes', pacienteRoutes)
 
